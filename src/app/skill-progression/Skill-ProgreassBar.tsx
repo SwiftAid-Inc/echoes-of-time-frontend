@@ -3,7 +3,6 @@
 import type { ProgressBarProps } from "@/types";
 import { Star, Trophy } from "lucide-react";
 import { motion } from "motion/react";
-import { div } from "motion/react-client";
 
 function SkillProgreassBar({
   currentPoint,
