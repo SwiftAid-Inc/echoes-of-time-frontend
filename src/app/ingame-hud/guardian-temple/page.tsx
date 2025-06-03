@@ -73,7 +73,7 @@ export default function GuardianTemple() {
             </div>
 
             {/* Character Thinking Image */}
-            <div className="absolute top-40 right-33 z-20">
+            <div className="absolute top-[27vh] right-[8.1rem] z-20 blur-[4px]">
                 <div className="relative">
                     <Image
                         src="/think.png"
@@ -87,7 +87,7 @@ export default function GuardianTemple() {
             </div>
 
             {/* Spiderman Face */}
-            <div className="absolute top-100 right-13 z-20 opacity-[0.4]">
+            <div className="absolute top-[69vh] right-[3rem] z-20 blur-[3px]">
                 <div className="w-[83px] h-[83px]">
                     <Image
                         src="/spiderman.png"

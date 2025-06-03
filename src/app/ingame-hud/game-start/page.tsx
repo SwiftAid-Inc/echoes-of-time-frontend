@@ -1,16 +1,20 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { CirclePause, CircleSmall} from 'lucide-react';
+import { CirclePause, CircleSmall } from 'lucide-react';
 import Image from 'next/image';
+import { useState } from 'react';
 
 
 export default function StartGame() {
     const router = useRouter();
+    const [isLoadingPause, setIsLoadingPause] = useState(false);
 
-     const handlePause = () => {
-    router.push('/ingame-hud/pause-game');
-  };
+    const handlePause = () => {
+        if (isLoadingPause) return;
+        setIsLoadingPause(true);
+        router.push('/ingame-hud/pause-game');
+    };
 
     const handleContinue = () => {
         router.push('/next-page');
@@ -56,7 +60,7 @@ export default function StartGame() {
                 </div>
 
                 {/* Character Thinking Image */}
-                <div className="absolute top-40 right-33 z-20">
+                <div className="absolute top-[27vh] right-[8.1rem] z-20">
                     <div className="relative">
                         <Image
                             src="/think.png"
@@ -70,7 +74,7 @@ export default function StartGame() {
                 </div>
 
                 {/* Spiderman Face */}
-                <div className="absolute top-100 right-13 z-20">
+                <div className="absolute top-[69vh] right-[3rem] z-20">
                     <div className="w-[83px] h-[83px]">
                         <Image
                             src="/spiderman.png"
@@ -101,14 +105,22 @@ export default function StartGame() {
             </div>
 
             {/* 4. Pause Icon (bottom-right, aligned with progress bar) */}
-                  <button
-                    onClick={handlePause}
-                    className="absolute bottom-8 right-8 flex items-center justify-center"
-                    aria-label="Pause Game"
-                  >
+            <button
+                onClick={handlePause}
+                disabled={isLoadingPause}
+                className="
+          absolute bottom-[5%] right-[5%] 
+          flex items-center justify-center 
+          disabled:opacity-50 disabled:cursor-not-allowed
+        "
+                aria-label="Pause Game"
+            >
+                {isLoadingPause ? (
+                    <div className="w-6 h-6 border-2 border-t-white border-white border-opacity-60 rounded-full animate-spin" />
+                ) : (
                     <CirclePause className="w-8 h-8 text-white/90" />
-                  </button>
-
+                )}
+            </button>
 
         </div>
     );
