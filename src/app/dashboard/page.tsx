@@ -2,7 +2,13 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+import NewGame from './components/dashboard/StartGame/NewGame';
+import SavedGame from './components/dashboard/StartGame/SavedGame';
+import Inventory from './components/dashboard/GameMode/Inventory';
+import Marketplace from './components/dashboard/GameMode/Marketplace';
+import Multiplayer from './components/dashboard/GameMode/Multiplayer';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -17,50 +23,33 @@ export default function DashboardPage() {
 
   const menuItems = ['Start Game', 'Game Mode', 'Settings', 'Quit'];
 
+  const submenus: Record<string, string[]> = {
+    'Start Game': ['New Game', 'Saved Game'],
+    'Game Mode': ['Inventory', 'Marketplace', 'Multiplayer'],
+  };
+
   const handleMenuClick = (item: string) => {
     setWalletWarning(false);
 
     if (item === 'Game Mode' && !walletConnected) {
-      setWalletWarning(true); // show footer warning
+      setWalletWarning(true);
     }
 
     setActivePage(item);
     setActiveSubmenu(['Start Game', 'Game Mode'].includes(item) ? item : null);
     setActiveSubPage(null);
 
-    switch (item) {
-      case 'Settings':
-        router.push('/dashboard/settings');
-        break;
-      case 'Quit':
-        alert('Goodbye!');
-        break;
+    if (item === 'Settings') {
+      router.push('/dashboard/components/settings');
+    } else if (item === 'Quit') {
+      router.push('/dashboard/components/quit');
     }
   };
 
   const handleSubMenuClick = (parent: string, subItem: string) => {
-    const routeMap: Record<string, Record<string, string>> = {
-      'Start Game': {
-        'New Game': '/dashboard/start-game/new',
-        'Saved Game': '/dashboard/start-game/saved',
-      },
-      'Game Mode': {
-        'Inventory': '/dashboard/game-mode/inventory',
-        'Marketplace': '/dashboard/game-mode/marketplace',
-        'Multiplayer': '/dashboard/game-mode/multiplayer',
-      },
-    };
-
-    const route = routeMap[parent]?.[subItem];
-    if (route) {
+    if (['Start Game', 'Game Mode'].includes(parent)) {
       setActiveSubPage(subItem);
-      router.push(route);
     }
-  };
-
-  const submenus: Record<string, string[]> = {
-    'Start Game': ['New Game', 'Saved Game'],
-    'Game Mode': ['Inventory', 'Marketplace', 'Multiplayer'],
   };
 
   return (
@@ -88,9 +77,6 @@ export default function DashboardPage() {
         <div className="flex items-center gap-2 px-2 py-1 rounded">
           <span>🏆</span>
           <span>{level}</span>
-        </div>
-        <div className="flex items-center">
-          <span className="text-white text-xl">🔔</span>
         </div>
         <button
           className="bg-[#8B4513] px-4 py-1 rounded text-white text-sm hover:bg-[#9b6f4f]"
@@ -140,54 +126,52 @@ export default function DashboardPage() {
         ))}
       </div>
 
+      {/* Component Rendering */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
+        {activePage === 'Start Game' && activeSubPage === 'New Game' && <NewGame />}
+        {activePage === 'Start Game' && activeSubPage === 'Saved Game' && <SavedGame />}
+        {activePage === 'Game Mode' && activeSubPage === 'Inventory' && <Inventory />}
+        {activePage === 'Game Mode' && activeSubPage === 'Marketplace' && <Marketplace />}
+        {activePage === 'Game Mode' && activeSubPage === 'Multiplayer' && <Multiplayer />}
+      </div>
+
       {/* Footer Progress Section */}
-<div className="absolute bottom-10 left-10 z-20 flex items-center gap-4 text-white">
-  {/* Circular Level Indicator */}
-  <div className="relative w-10 h-10">
-    <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-      <path
-        className="text-orange-900"
-        stroke="currentColor"
-        strokeWidth="3"
-        fill="none"
-        strokeLinecap="round"
-        d="M18 2.0845
-          a 15.9155 15.9155 0 0 1 0 31.831
-          a 15.9155 15.9155 0 0 1 0 -31.831"
-      />
-      <path
-        className="text-orange-500"
-        stroke="currentColor"
-        strokeWidth="3"
-        fill="none"
-        strokeLinecap="round"
-        strokeDasharray={`${progress}, 100`}
-        d="M18 2.0845
-          a 15.9155 15.9155 0 0 1 0 31.831
-          a 15.9155 15.9155 0 0 1 0 -31.831"
-      />
-    </svg>
-    <div className="absolute inset-0 flex items-center justify-center text-sm font-bold text-orange-300">
-      {level}
-    </div>
-  </div>
+      <div className="absolute bottom-10 left-10 z-20 flex items-center gap-4 text-white">
+        <div className="relative w-10 h-10">
+          <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+            <path
+              className="text-orange-900"
+              stroke="currentColor"
+              strokeWidth="3"
+              fill="none"
+              strokeLinecap="round"
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+            <path
+              className="text-orange-500"
+              stroke="currentColor"
+              strokeWidth="3"
+              fill="none"
+              strokeLinecap="round"
+              strokeDasharray={`${progress}, 100`}
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center text-sm font-bold text-orange-300">
+            {level}
+          </div>
+        </div>
 
-  {/* Horizontal Progress Bar */}
-  <div className="w-64 h-2 bg-orange-900 rounded overflow-hidden">
-    <div
-      className="h-full bg-orange-500"
-      style={{ width: `${progress}%` }}
-    ></div>
-  </div>
+        <div className="w-64 h-2 bg-orange-900 rounded overflow-hidden">
+          <div className="h-full bg-orange-500" style={{ width: `${progress}%` }}></div>
+        </div>
 
-  {/* Wallet Warning */}
-  {walletWarning && (
-    <div className="text-sm text-white ml-210 max-w-xs">
-      ⚠️ Wallet not connected!
-    </div>
-  )}
-</div>
-
+        {walletWarning && (
+          <div className="text-sm text-white ml-210 max-w-xs">
+            ⚠️ Wallet not connected!
+          </div>
+        )}
+      </div>
     </div>
   );
 }
