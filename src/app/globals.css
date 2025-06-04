@@ -135,6 +135,25 @@
   border-radius: 40px;
 }
 
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b78846;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a67a3d;
+}
+
 .custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
   border-radius: 40px;
