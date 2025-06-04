@@ -30,11 +30,11 @@ export default function PurchaseModal({
         className="relative w-full max-w-lg"
         onClick={(e) => e.stopPropagation()} // Prevent clicks on modal from closing it
       >
-        <div className="border border-[#B78846] bg-[#3A2A10]/95 backdrop-blur-md p-8 rounded-lg shadow-2xl">
+        <div className="border border-[#825200CC] bg-[#2A1B02]/95 backdrop-blur-md p-8 rounded-lg shadow-2xl">
           {state === "processing" && (
             <div className="flex flex-col items-center justify-center py-12">
               <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-[#B78846] mb-6"></div>
-              <p className="text-center text-sm uppercase tracking-wider text-[#B78846] font-medium">
+              <p className="text-center text-base uppercase tracking-wider text-[#F0DCBF] font-medium">
                 "PROCESSING YOUR PURCHASE ON THE BLOCKCHAIN..."
               </p>
             </div>
@@ -43,23 +43,23 @@ export default function PurchaseModal({
           {state === "success" && (
             <div className="flex flex-col items-center justify-center py-10">
               <ThumbsUp className="h-10 w-10 text-[#B78846] mb-6" />
-              <p className="text-center mb-2 text-[#CCCCCC]">
+              <p className="text-center mb-2 text-[#F0DCBF]">
                 You have successfully purchased
               </p>
-              <p className="text-center font-bold mb-10 text-[#B78846] text-xl">
+              <p className="text-center font-bold mb-10  text-xl">
                 "{artifact?.name}"
               </p>
 
-              <div className="flex gap-6 w-full">
+              <div className="flex gap-2 w-full">
                 <button
                   onClick={onViewItem}
-                  className="flex-1 bg-[#A67A3D] text-white py-4 rounded-md font-bold hover:bg-[#B78846] transition-colors shadow-lg"
+                  className="flex-[3] bg-[#A55E1DCC] text-white py-4 rounded-md font-bold hover:bg-[#ff9d42cc]  transition-colors shadow-lg cursor-pointer"
                 >
                   View Item
                 </button>
                 <button
                   onClick={onClose}
-                  className="flex-1 border border-[#B78846] text-[#B78846] py-4 rounded-md font-bold hover:bg-[#3F2F15] transition-colors"
+                  className="flex-[1] border border-[#B78846] text-[#B78846] py-4 rounded-md font-bold hover:bg-[#3F2F15] transition-colors cursor-pointer"
                 >
                   Share
                 </button>

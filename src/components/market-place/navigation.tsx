@@ -17,7 +17,7 @@ export default function Navigation() {
   const [notifications, setNotifications] = useState(0);
 
   return (
-    <nav className="border-b border-[#1A1A1A] px-12 py-6 flex justify-between items-center backdrop-blur-sm">
+    <nav className="border-b border-[#655334] px-12 py-6 flex justify-between items-center backdrop-blur-sm bg-[#0F0700]">
       <div className="flex items-center gap-6">
         <Link
           href="#"
@@ -77,16 +77,7 @@ export default function Navigation() {
       <div className="flex items-center gap-6">
         <div className="relative">
           <Bell className="h-6 w-6 text-white" />
-          <span
-            className="absolute rounded-full flex items-center justify-center font-bold text-xs text-white"
-            style={{
-              backgroundColor: "#B78846",
-              height: "20px",
-              width: "20px",
-              top: "-8px",
-              right: "-8px",
-            }}
-          >
+          <span className="absolute rounded-full flex items-center justify-center font-bold text-xs text-white bg-[#FFC867] h-5 w-5 -top-2 -right-2">
             0
           </span>
         </div>

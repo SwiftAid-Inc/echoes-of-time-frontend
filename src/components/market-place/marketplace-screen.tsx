@@ -5,6 +5,7 @@ import { ShoppingCart, DollarSign } from "lucide-react";
 import ArtifactGrid from "./artifact-grid";
 import ArtifactInfo from "./artifact-info";
 import PurchaseModal from "./purchase-modal";
+import Image from "next/image";
 
 export type ArtifactType = {
   id: string;
@@ -58,32 +59,64 @@ export default function MarketplaceScreen() {
 
   return (
     <div>
-      <div className="flex border-b border-[#1A1A1A]">
+      <div className="flex  text-white">
         <button
-          className={`px-8 py-4 font-medium flex items-center gap-2 ${
+          className={`px-8 py-4 font-medium flex items-center cursor-pointer ${
             activeTab === "buy" ? "text-white" : "text-[#4D4D4D]"
           }`}
           onClick={() => handleTabChange("buy")}
         >
-          <ShoppingCart className="h-4 w-4" />
+          <Image
+            src="/massiveMultiplayer.png"
+            alt="Buy icon"
+            width={40}
+            height={40}
+            className="mr-2"
+          />
           Buy Artifacts
         </button>
+
+        <div className="w-px bg-[#1A1A1A]"></div>
+
         <button
-          className={`px-8 py-4 font-medium flex items-center gap-2 ${
+          className={`px-8 py-4 font-medium flex items-center cursor-pointer ${
             activeTab === "sell" ? "text-white" : "text-[#4D4D4D]"
           }`}
           onClick={() => handleTabChange("sell")}
         >
-          <DollarSign className="h-4 w-4" />
+          <Image
+            src="/doublePlayer.png"
+            alt="Sell icon"
+            width={40}
+            height={40}
+            className="mr-2 "
+          />
           Sell Artifacts
         </button>
 
         <div className="ml-auto flex items-center space-x-8 px-6">
-          <div className="text-[#B78846] font-bold">87000</div>
-          <div className="text-white font-bold">500</div>
+          <div className="flex items-center">
+            <span className="text-[#FFE2AF] font-bold">87000</span>
+            <Image
+              src="/star-icon.png"
+              alt="Gold icon"
+              width={30}
+              height={30}
+              className="ml-2"
+            />
+          </div>
+          <div className="flex items-center">
+            <span className="text-[#FFE2AF] font-bold">500</span>
+            <Image
+              src="/cup-icon.png"
+              alt="Silver icon"
+              width={30}
+              height={30}
+              className="ml-2"
+            />
+          </div>
         </div>
       </div>
-
       <div className="mt-10 grid md:grid-cols-3 gap-10">
         <div className="md:col-span-2">
           <ArtifactGrid
