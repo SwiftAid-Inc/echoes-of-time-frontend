@@ -10,6 +10,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-cinzel: var(--font-cinzel);
+  --font-cinzel-decorative: var(--font-cinzel-decorative);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +24,14 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Utility classes for the new fonts */
+.font-cinzel {
+  font-family: var(--font-cinzel);
+}
+
+.font-cinzel-decorative {
+  font-family: var(--font-cinzel-decorative);
 }
