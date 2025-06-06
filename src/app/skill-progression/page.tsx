@@ -21,7 +21,7 @@ const variants = {
 
 function page() {
   return (
-    <div className="bg-transparent h-screen ">
+    <div className="bg-[#100a00] h-screen ">
       <SkillProgreassBar
         currentPoint={2000}
         totalPoint={3000}
