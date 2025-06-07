@@ -27,7 +27,7 @@ function Button({ backgroundColor = "#4A2F06", topic, participant, locationTime 
         </h1>
         <h3 className="text-[#F6DDB2] text-[12px] font-[600]">{locationTime}</h3>
       </div>
-      <div className="flex gap-[16px] items-center space-x-3">
+      <div className="flex gap-[16px] text-white items-center space-x-3">
         <span className="text-[12px] font-[400]">participant:</span>
         <span className="text-[16px] font-[600]">{participant}</span>
       </div>
