@@ -4,11 +4,11 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import NewGame from './components/dashboard/StartGame/NewGame';
-import SavedGame from './components/dashboard/StartGame/SavedGame';
-import Inventory from './components/dashboard/GameMode/Inventory';
-import Marketplace from './components/dashboard/GameMode/Marketplace';
-import Multiplayer from './components/dashboard/GameMode/Multiplayer';
+import NewGame from '../../components/dashboard/StartGame/NewGame';
+import SavedGame from '../../components/dashboard/StartGame/SavedGame';
+import Inventory from '../../components/dashboard/GameMode/Inventory';
+import Marketplace from '../../components/dashboard/GameMode/Marketplace';
+import Multiplayer from '../../components/dashboard/GameMode/Multiplayer';
 
 export default function DashboardPage() {
   const [activePage, setActivePage] = useState<string | null>(null);
@@ -16,8 +16,7 @@ export default function DashboardPage() {
   const [activeSubPage, setActiveSubPage] = useState<string | null>(null);
   const [hoveredSubItem, setHoveredSubItem] = useState<string | null>(null);
 
-  const [progress, setProgress] = useState(40);
-  const [level, setLevel] = useState(5);
+
   const [walletConnected, setWalletConnected] = useState(false);
   const [walletWarning, setWalletWarning] = useState(false);
 
@@ -47,41 +46,12 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="relative w-screen h-screen bg-black overflow-hidden">
+    <div className="relative w-screen h-screen bg-transparent overflow-hidden">
       {/* Background */}
-      <Image
-        src="/bg.jpg"
-        layout="fill"
-        objectFit="cover"
-        alt="Dashboard background"
-        className="z-0"
-      />
+   
 
       {/* Left Gradient Overlay */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        <div className="w-[80%] h-full bg-gradient-to-r from-black/90 via-black/80 to-transparent" />
-      </div>
-
-      {/* Top Right HUD */}
-      <div className="absolute top-6 right-10 z-20 flex items-center gap-6 text-white">
-        <div className="flex items-center gap-1 px-2 py-1 rounded">
-          <span>🔥</span>
-          <span>87,000</span>
-        </div>
-        <div className="flex items-center gap-2 px-2 py-1 rounded">
-          <span>🏆</span>
-          <span>{level}</span>
-        </div>
-        <button
-          className="bg-[#8B4513] px-4 py-1 rounded text-white text-sm hover:bg-[#9b6f4f]"
-          onClick={() => {
-            setWalletConnected(true);
-            setWalletWarning(false);
-          }}
-        >
-          {walletConnected ? 'Wallet Connected' : 'Connect Wallet'}
-        </button>
-      </div>
+    
 
       {/* Menu */}
       <div className="absolute top-1/4 left-16 z-20 flex flex-col gap-4">
@@ -281,43 +251,7 @@ export default function DashboardPage() {
         )}
       </AnimatePresence>
 
-      {/* Footer Progress Section */}
-      <div className="absolute bottom-10 left-10 z-20 flex items-center gap-4 text-white">
-        <div className="relative w-10 h-10">
-          <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-            <path
-              className="text-orange-900"
-              stroke="currentColor"
-              strokeWidth="3"
-              fill="none"
-              strokeLinecap="round"
-              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-            />
-            <path
-              className="text-orange-500"
-              stroke="currentColor"
-              strokeWidth="3"
-              fill="none"
-              strokeLinecap="round"
-              strokeDasharray="40, 100"
-              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-            />
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center text-sm font-bold text-orange-300">
-            {level}
-          </div>
-        </div>
-
-        <div className="w-64 h-2 bg-orange-900 rounded overflow-hidden">
-          <div className="h-full bg-orange-500" style={{ width: `${progress}%` }}></div>
-        </div>
-
-        {walletWarning && (
-          <div className="text-sm text-white ml-210 max-w-xs">
-            ⚠️ Wallet not connected!
-          </div>
-        )}
-      </div>
+     
     </div>
   );
 }
