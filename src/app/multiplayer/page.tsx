@@ -3,8 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import { Star, Trophy } from "lucide-react";
-import JoinClan from "../components/ui/joinClan";
-import CreateClan from "../components/ui/createClan";
+import JoinClan from "../../components/Multiplayer/ui/joinClan";
+import CreateClan from "../../components/Multiplayer/ui/createClan";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function Page() {

@@ -1,29 +1,12 @@
-"use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 
-export default function LoadingScreen() {
-  const [progress, setProgress] = useState(0);
+interface LoadingScreenProps {
+  progressLoading: number;
+}
 
-  useEffect(() => {
-    const duration = 5000; // 5 seconds
-    const interval = 50; // Update every 50ms
-    const steps = duration / interval;
-    const increment = 100 / steps;
-    let currentProgress = 0;
+export default function LoadingScreen({ progressLoading }: LoadingScreenProps) {
 
-    const timer = setInterval(() => {
-      currentProgress += increment;
-      if (currentProgress >= 100) {
-        currentProgress = 100;
-        clearInterval(timer);
-      }
-      setProgress(Math.min(Math.round(currentProgress), 100));
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <div className="min-h-screen relative flex flex-col items-center justify-center overflow-hidden">
@@ -72,13 +55,13 @@ export default function LoadingScreen() {
           <div className="relative h-3 bg-black/50 rounded-full overflow-hidden border-2 border-[#863B00]">
             <div
               className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#E0BA00] to-[#863B00] transition-all duration-300 ease-linear"
-              style={{ width: `${progress}%` }}
+              style={{ width: `${progressLoading}%` }}
             />
           </div>
 
           {/* Loading Text */}
           <div className="text-white text-lg md:text-xl text-center mt-4 font-cinzel tracking-widest drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-            LOADING... {progress}%
+            LOADING... {progressLoading}%
           </div>
         </div>
       </div>

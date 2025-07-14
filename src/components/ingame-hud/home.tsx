@@ -63,17 +63,17 @@ export default function TempleOfGazia() {
       <div className="relative z-10 flex flex-col justify-between min-h-screen px-8 md:px-16 py-8">
         {/* Title */}
         <div className="mt-10">
-          <h1 className="text-[#FFE3B2] text-[48px] mb-4 tracking-wider font-[Cinzel]">
+          <h1 className="text-[#FFE3B2] text-[53px] font-[700] mb-4 tracking-wider font-[Cinzel]">
             THE TEMPLE <br /> OF GAZIA
           </h1>
-          <p className="text-[#C7C7C7CC] text-[21px] font-[Work Sans] tracking-wide">
+          <p className="text-[#C7C7C7CC] text-[25px] font-[600] font-[Work Sans] tracking-wide">
             AD 196 – EGYPT
           </p>
         </div>
 
         {/* Paragraph */}
         <div className="max-w-2xl mb-16 mt-10">
-          <p className="text-[#FFFFFF] text-[21px] leading-relaxed font-[Work Sans]">
+          <p className="text-[#FFFFFF] text-[25px] font-[400] leading-relaxed font-[Work Sans]">
             It is important that we keep our foothold in Siwa, or else they will have our
             heads. I love you with all of my ka; however, no amount of offerings or prayer can
             replace the will of a warrior. Through battle we speak to the gods.
